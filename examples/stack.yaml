@@ -17,4 +17,4 @@ packages:
 # - temporary-resourcet-0.1.0.0
 # - transformers-compat-0.5.1.4
 
-resolver: lts-8.14
+resolver: lts-12.11

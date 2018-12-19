@@ -1,5 +1,5 @@
 name:                bloodhound
-version:             0.16.0.0
+version:             0.17.0.0
 synopsis:            Elasticsearch client library for Haskell
 description:         Elasticsearch made awesome for Haskell hackers
 homepage:            https://github.com/bitemyapp/bloodhound
@@ -18,6 +18,7 @@ extra-source-files:
   -- We do this to avoid package check errors when uploading to hackage
   tests/V1/tests.hs
   tests/V5/tests.hs
+  tests/V6/tests.hs
 
 source-repository head
   type:     git
@@ -29,11 +30,29 @@ Flag ES1
 
 Flag ES5
   Description: Run the test suite against an Elasticsearch 5.x server
+  Default:     False
+
+Flag ES6
+  Description: Run the test suite against an Elasticsearch 6.x server
   Default:     True
 
 library
   ghc-options:         -Wall
-  exposed-modules:     Database.V5.Bloodhound
+  exposed-modules:     Database.V6.Bloodhound
+                       Database.V6.Bloodhound.Client
+                       Database.V6.Bloodhound.Types
+                       Database.V6.Bloodhound.Types.Class
+                       Database.V6.Bloodhound.Internal.Aggregation
+                       Database.V6.Bloodhound.Internal.Analysis
+                       Database.V6.Bloodhound.Internal.Client
+                       Database.V6.Bloodhound.Internal.Highlight
+                       Database.V6.Bloodhound.Internal.Newtypes
+                       Database.V6.Bloodhound.Internal.Query
+                       Database.V6.Bloodhound.Internal.Sort
+                       Database.V6.Bloodhound.Internal.StringlyTyped
+                       Database.V6.Bloodhound.Internal.Suggest
+
+                       Database.V5.Bloodhound
                        Database.V5.Bloodhound.Client
                        Database.V5.Bloodhound.Types
                        Database.V5.Bloodhound.Types.Class
@@ -91,7 +110,10 @@ test-suite bloodhound-tests
   if flag(ES1)
     hs-source-dirs:    tests/V1
   else
-    hs-source-dirs:    tests/V5
+    if flag(ES5)
+      hs-source-dirs:    tests/V5
+    else
+      hs-source-dirs:    tests/V6
     other-modules:     Test.Script
   other-modules:       Test.Aggregation
                        Test.ApproxEq

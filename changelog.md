@@ -1,3 +1,23 @@
+0.17.0.0
+========
+- @vlatkoB
+  - Added V6 modules for ES 6.4.2
+  - V6 vs. V5
+	- Removed MappingName, "\_type" hardcoded to "\_doc", as there can be only one
+	- Removed "\_all" from tests because it does not exist any more
+	- Added new Parent/Child relation
+	  - removed parent arg from some functions
+	  - Added ParentIdQuery
+	- TemplateQueryInline renamed to TemplateQuery and adapted to V6
+	  - QueryTemplateQuery removed from Query
+	  - Added searchByTemplate function
+	- NodeStats and NodeInfo adapted to new fields
+    - IndexTemplate supports list of TemplatePatterns, but only one mapping
+	- Added ThreadPoolSearch to ThreadPoolType
+    - Field type "string" changed to "text"
+
+
+
 0.16.0.0
 ========
 - @bitemyapp
