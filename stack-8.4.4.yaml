@@ -1,0 +1,15 @@
+flags:
+  bloodhound-examples:
+    werror: true
+
+packages:
+  - '.'
+  - './examples'
+
+extra-deps:
+  - quickcheck-arbitrary-template-0.2.0.0
+  - quickcheck-properties-0.1
+
+resolver: lts-12.22
+
+allow-newer: true
